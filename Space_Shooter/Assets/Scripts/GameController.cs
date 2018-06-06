@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     [SerializeField]
-    private GameObject hazardPrefab;
+    private GameObject[] hazardPrefabs;
     [SerializeField]
     private Vector3 spawnValues;
     [SerializeField]
@@ -47,9 +47,10 @@ public class GameController : MonoBehaviour {
         {
             for (int i = 0; i < hazardCount; i++)
             {
+                GameObject hazard = hazardPrefabs[Random.Range(0, hazardPrefabs.Length)];
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazardPrefab, spawnPosition, spawnRotation);
+                Instantiate(hazard, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }
             yield return new WaitForSeconds(waveWait);

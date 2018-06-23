@@ -46,4 +46,11 @@ public class PlayerController : MonoBehaviour {
             winText.text = "You Win!";
         }
     }
+
+    public void Die()
+    {
+        Debug.Log("trying to die");
+        winText.text = "You Lose!";
+        Destroy(gameObject);
+    }
 }

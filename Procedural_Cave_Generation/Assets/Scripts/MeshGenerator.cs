@@ -60,13 +60,19 @@ public class MeshGenerator : MonoBehaviour
         }
         else
         {
-            CreateWallMesh();            
+            CreateWallMesh();
         }
 
     }
 
     void CreateWallMesh()
     {
+        MeshCollider[] currentColliders = walls.gameObject.GetComponents<MeshCollider>();
+        for (int i = 0; i < currentColliders.Length; i++)
+        {
+            Destroy(currentColliders[i]);
+        }
+
         CalculateMeshOutlines();
 
         List<Vector3> wallVertices = new List<Vector3>();
@@ -74,7 +80,7 @@ public class MeshGenerator : MonoBehaviour
         Mesh wallMesh = new Mesh();
         float wallHeight = 5;
 
-        foreach(List<int> outline in outlines) 
+        foreach (List<int> outline in outlines)
         {
             for (int i = 0; i < outline.Count - 1; i++)
             {
@@ -110,7 +116,7 @@ public class MeshGenerator : MonoBehaviour
         }
 
         CalculateMeshOutlines();
-        foreach(List<int> outline in outlines)
+        foreach (List<int> outline in outlines)
         {
             EdgeCollider2D edgeCollider = gameObject.AddComponent<EdgeCollider2D>();
             Vector2[] edgePoints = new Vector2[outline.Count];
@@ -301,7 +307,7 @@ public class MeshGenerator : MonoBehaviour
             if (trianglesContainingVertexA[i].Contains(vertexB))
             {
                 sharedTriangleCount++;
-                if (sharedTriangleCount > 1) 
+                if (sharedTriangleCount > 1)
                 {
                     break;
                 }

@@ -285,7 +285,7 @@ MonoBehaviour:
   height: 72
   seed: Becca
   useRandomSeed: 1
-  randomFillPercent: 46
+  randomFillPercent: 53
 --- !u!4 &574394883
 Transform:
   m_ObjectHideFlags: 0
